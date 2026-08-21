@@ -1,0 +1,16 @@
+# Generated experiment outputs (recreate by running the notebook)
+wsimod-staged-calibration-framework_outputs/
+
+# Jupyter and Python transient files
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+
+# Local/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Do not commit secrets if any are added locally
+.env

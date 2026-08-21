@@ -1,0 +1,115 @@
+schema_version: "1.1.0"
+generator_version: "1.1.0"
+weighting_mode: three_stage_functional_group_threshold
+uncovered_area_multiplier: 1.0
+
+dominance_thresholds:
+  mixture_upper_exclusive: 0.60
+  dominant_lower_inclusive: 0.80
+  transitional_alpha: "(D - 0.60) / (0.80 - 0.60)"
+  stages:
+    - "D < 0.60: fraction-weighted mixture"
+    - "0.60 <= D < 0.80: linear mixture-to-dominant blend"
+    - "D >= 0.80: dominant functional-group behaviour"
+
+soil:
+  fraction_prefix: soilscapes_
+  fraction_suffix: _fraction
+  coverage_column: soilscapes_coverage_share
+  uncovered_group: unclassified_or_water
+  defaults:
+    storage_multiplier: 1.0
+    percolation_multiplier: 1.0
+  overrides:
+    soilscapes_lime_rich_loamy_and_clayey_soils_with_impeded_drainage_fraction:
+      class_label: lime-rich impeded drainage
+      storage_multiplier: 0.80
+      percolation_multiplier: 0.80
+      rationale: impeded drainage; stronger lower-storage and lower-exchange direction
+    soilscapes_slightly_acid_loamy_and_clayey_soils_with_impeded_drainage_fraction:
+      class_label: slightly-acid impeded drainage
+      storage_multiplier: 0.90
+      percolation_multiplier: 0.85
+      rationale: impeded drainage; conservative lower-storage and lower-exchange direction
+    soilscapes_freely_draining_slightly_acid_loamy_soils_fraction:
+      class_label: freely draining slightly-acid loam
+      storage_multiplier: 1.00
+      percolation_multiplier: 1.00
+      rationale: reference soil class retained at baseline
+  functional_groups:
+    impeded_or_slowly_permeable:
+      - soilscapes_lime_rich_loamy_and_clayey_soils_with_impeded_drainage_fraction
+      - soilscapes_slightly_acid_loamy_and_clayey_soils_with_impeded_drainage_fraction
+      - soilscapes_slowly_permeable_seasonally_wet_acid_loamy_and_clayey_soils_fraction
+      - soilscapes_slowly_permeable_seasonally_wet_slightly_acid_but_base_rich_loamy_and_clayey_soils_fraction
+    freely_draining:
+      - soilscapes_freely_draining_acid_loamy_soils_over_rock_fraction
+      - soilscapes_freely_draining_lime_rich_loamy_soils_fraction
+      - soilscapes_freely_draining_sandy_breckland_soils_fraction
+      - soilscapes_freely_draining_slightly_acid_but_base_rich_soils_fraction
+      - soilscapes_freely_draining_slightly_acid_loamy_soils_fraction
+      - soilscapes_freely_draining_slightly_acid_sandy_soils_fraction
+      - soilscapes_freely_draining_very_acid_sandy_and_loamy_soils_fraction
+      - soilscapes_sand_dune_soils_fraction
+      - soilscapes_shallow_lime_rich_soils_over_chalk_or_limestone_fraction
+    floodplain_or_high_groundwater:
+      - soilscapes_freely_draining_floodplain_soils_fraction
+      - soilscapes_loamy_and_clayey_floodplain_soils_with_naturally_high_groundwater_fraction
+      - soilscapes_loamy_and_clayey_soils_of_coastal_flats_with_naturally_high_groundwater_fraction
+      - soilscapes_loamy_and_sandy_soils_with_naturally_high_groundwater_and_a_peaty_surface_fraction
+      - soilscapes_loamy_soils_with_naturally_high_groundwater_fraction
+      - soilscapes_saltmarsh_soils_fraction
+    peat_or_wet_upland:
+      - soilscapes_blanket_bog_peat_soils_fraction
+      - soilscapes_fen_peat_soils_fraction
+      - soilscapes_naturally_wet_very_acid_sandy_and_loamy_soils_fraction
+      - soilscapes_raised_bog_peat_soils_fraction
+      - soilscapes_shallow_very_acid_peaty_soils_over_rock_fraction
+      - soilscapes_slowly_permeable_wet_very_acid_upland_soils_with_a_peaty_surface_fraction
+      - soilscapes_very_acid_loamy_upland_soils_with_a_wet_peaty_surface_fraction
+    unclassified_or_water:
+      - soilscapes_restored_soils_mostly_from_quarry_and_opencast_spoil_fraction
+      - soilscapes_unclassified_fraction
+      - soilscapes_water_fraction
+
+hydrogeology:
+  fraction_prefix: bgs_class_
+  fraction_suffix: _fraction
+  coverage_column: bgs_coverage_share
+  uncovered_group: uncovered_default
+  defaults:
+    capacity_multiplier: 1.0
+    residence_time_multiplier: 1.0
+  overrides:
+    bgs_class_2A_fraction:
+      class_label: fractured high productivity
+      capacity_multiplier: 1.20
+      residence_time_multiplier: 1.40
+      rationale: larger storage capacity and slower release-response hypothesis
+    bgs_class_1B_fraction:
+      class_label: intergranular moderate productivity
+      capacity_multiplier: 1.00
+      residence_time_multiplier: 1.00
+      rationale: reference hydrogeology class retained at baseline
+    bgs_class_3_fraction:
+      class_label: essentially no groundwater
+      capacity_multiplier: 0.80
+      residence_time_multiplier: 1.00
+      rationale: lower groundwater storage capacity; timing unchanged
+  functional_groups:
+    class_1A: [bgs_class_1A_fraction]
+    class_1B: [bgs_class_1B_fraction]
+    class_1C: [bgs_class_1C_fraction]
+    class_2A: [bgs_class_2A_fraction]
+    class_2B: [bgs_class_2B_fraction]
+    class_2C: [bgs_class_2C_fraction]
+    class_3: [bgs_class_3_fraction]
+
+scenario_composition:
+  R01: [soil_storage]
+  R02: [soil_percolation]
+  R03: [groundwater_capacity]
+  R04: [soil_storage, soil_percolation]
+  R05: [soil_storage, soil_percolation, groundwater_capacity]
+  R06: [groundwater_residence_time]
+  R07: [soil_storage, soil_percolation, groundwater_capacity, groundwater_residence_time]

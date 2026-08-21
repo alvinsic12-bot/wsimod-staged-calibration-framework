@@ -1,0 +1,10 @@
+{
+  "project": "WSIMOD staged calibration framework",
+  "framework_version": "2.3.0-framework-aligned-phaseAB-portable",
+  "scope": "Exact local inputs read by the notebook; historical figures and prior outputs are excluded.",
+  "data_manifest": "data_manifest.csv",
+  "data_manifest_sha256": "e8a96d596781a295c5e729eeb0910563df892eed751be99de1003774e1a35d2e",
+  "file_count": 2875,
+  "total_bytes": 129100211,
+  "verification": "Run python scripts/verify_inputs.py before executing the notebook."
+}

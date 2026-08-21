@@ -1,0 +1,14 @@
+name: wsimod-staged-calibration-framework
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - jupyterlab
+  - ipykernel
+  - numpy
+  - pandas
+  - matplotlib
+  - pyyaml
+  - pyarrow
+  - tqdm
+  - dill

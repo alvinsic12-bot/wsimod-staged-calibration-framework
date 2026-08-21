@@ -1,0 +1,43 @@
+{
+  "project": "WSIMOD staged calibration framework",
+  "framework_version": "2.3.0-framework-aligned-phaseAB-portable",
+  "instructions": "Copy this file to wsimod-staged-calibration-framework_inputs/wsimod-staged-calibration-framework_input_manifest.json and complete provenance/checksum fields before running the notebook.",
+  "inputs": [
+    {
+      "portable_path": "baseline/corrected_wwtw_routing_baseline.yml",
+      "purpose": "Corrected national baseline fixed before all parameter experiments (Methodology Section 2.1).",
+      "source_description": "",
+      "sha256": ""
+    },
+    {
+      "portable_path": "mappings/official_station_arc_mapping.csv",
+      "purpose": "Confirmed observation-to-output Arc mapping used in the common evaluation protocol (Sections 2.1–2.2).",
+      "source_description": "",
+      "sha256": ""
+    },
+    {
+      "portable_path": "static_data/soilscapes_fractions.csv",
+      "purpose": "Soil evidence for regionalisation factors (Section 2.4).",
+      "source_description": "",
+      "sha256": ""
+    },
+    {
+      "portable_path": "static_data/hydrogeology_fractions.csv",
+      "purpose": "Hydrogeological evidence for regionalisation factors (Section 2.4).",
+      "source_description": "",
+      "sha256": ""
+    },
+    {
+      "portable_path": "model_node_9056/unified_data.parquet",
+      "purpose": "Model forcing/input data used for the common warm-up, calibration and validation periods (Section 2.2).",
+      "source_description": "",
+      "sha256": ""
+    },
+    {
+      "portable_path": "wsimod_source/",
+      "purpose": "Pinned WSIMOD source tree used by each worker process.",
+      "source_description": "",
+      "sha256": ""
+    }
+  ]
+}

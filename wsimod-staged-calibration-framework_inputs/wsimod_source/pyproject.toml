@@ -1,0 +1,88 @@
+[build-system]
+requires = [
+  "hatch-vcs",
+  "hatchling",
+]
+build-backend = "hatchling.build"
+
+[project]
+name = "wsimod"
+description = "WSIMOD is for simulating water quality and quantity"
+readme = "README.md"
+dynamic = [ "version"]
+license = {file = "LICENSE"}
+authors = [
+    { name = "Barnaby Dobson", email = "b.dobson@imperial.ac.uk" },
+    { name = "Imperial College London RSE Team", email = "ict-rse-team@imperial.ac.uk" }
+]
+requires-python = ">=3.9"
+dependencies = [
+    "PyYAML",
+    "tqdm",
+    "dill",
+    "pandas",
+    "pyarrow"
+]
+
+[project.scripts]
+wsimod = "wsimod.__main__:run"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pre-commit",
+    "black",
+    "ruff",
+    "pip-tools",
+    "pytest-cov",
+    "geopandas",
+    "matplotlib",
+    "shapely",
+    "pytest-cov"
+]
+
+demos = [
+    "geopandas",
+    "matplotlib",
+    "shapely"
+]
+
+doc = [
+    "mkdocs",
+    "mkdocstrings[python]",
+    "mkdocs-material",
+    "mkdocs-autorefs",
+    "mkdocs-bibtex",
+    "mkdocs-coverage",
+    "mkdocs-jupyter",
+    "mkdocs-material-extensions",
+    "pypandoc",
+    "mkdocs-gen-files",
+    "tabulate",
+    "wsimod[demos]"
+]
+
+[tool.hatch.build]
+# Exclude specific files and folders (e.g., `htmlcov` for coverage report)
+exclude = ["htmlcov"]
+
+[tool.hatch.metadata]
+license = "BSD-3-clause"                                 # Or your primary license name
+license-files = [ "LICENSE"]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "_version.py"
+
+
+[tool.pytest.ini_options]
+addopts = "-v -p no:warnings --cov=wsimod --cov-report=html"
+
+[tool.ruff]
+select = ["E", "F", "I"] # pycodestyle, Pyflakes, isort. Ignoring pydocstyle (D), for now
+exclude = ["docs", "tests"]  # Let's ignore tests and docs folders, for now
+
+[tool.ruff.pydocstyle]
+convention = "google"

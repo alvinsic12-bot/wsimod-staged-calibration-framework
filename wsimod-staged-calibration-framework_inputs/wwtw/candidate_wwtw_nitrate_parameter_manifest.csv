@@ -1,0 +1,4 @@
+identifier,wwtw_node,wwtw_name,source_sewershed_wfd_ids,uwwtd_code,uwwtd_n_removal,uwwtd_total_n_performance,parameter,baseline_value,test_value,unchanged_exponent,status,evidence
+0f5b02e9a4,0f5b02e9a4-wwtw,Haverhill,GB105036040910; GB105036040941; GB105036040950; GB105037041290,UKENAN_AW_TP000127,1,P,process_parameters.nitrate.constant,20.0,16.0,1.05,candidate_classification_scenario_not_calibrated,UWWTD nitrogen removal reported; total-N performance P
+4ee034eb9c,4ee034eb9c-wwtw,Great Cornard,GB105036040941,UKENAN_AW_TP000109,1,P,process_parameters.nitrate.constant,20.0,16.0,1.05,candidate_classification_scenario_not_calibrated,UWWTD nitrogen removal reported; total-N performance P
+bf1b84e33a,bf1b84e33a-wwtw,Sudbury,GB105036040941,UKENAN_AW_TP000254,1,P,process_parameters.nitrate.constant,20.0,16.0,1.05,candidate_classification_scenario_not_calibrated,UWWTD nitrogen removal reported; total-N performance P

@@ -1,0 +1,6 @@
+# Exact input bytes are covered by data_manifest.csv; never rewrite line endings
+# or attempt line-by-line diffs on the packaged source/data files.
+wsimod-staged-calibration-framework_inputs/** binary
+
+# The notebook is not checksum-pinned, so keep its JSON reviewable and stable.
+notebooks/** text eol=lf
